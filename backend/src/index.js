@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cookieParser()); //with this we will be able to access cookies in req.cookies like req.cookies.jwt
 app.use(cors({
     origin:'http://localhost:5173', //backedn saying 5173 is allowed to come from frontend
-    Credentials:true, //it allows cookies
+    credentials:true, //it allows cookies
 }
 ));
 

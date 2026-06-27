@@ -10,3 +10,4 @@ frontend/.env
 
 # Build
 frontend/dist/
+frontend/build/
