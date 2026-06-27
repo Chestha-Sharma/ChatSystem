@@ -1,5 +1,4 @@
-import {create } from 'zustand'
-import { checkAuth } from '../../../backend/src/controllers/auth.controller';
+import {create } from 'zustand' 
 import { axiosInstance } from '../lib/axios';
 const useAuthStore = create((set)=>({ //initial state
    authUser:null,
@@ -11,7 +10,7 @@ const useAuthStore = create((set)=>({ //initial state
    checkAuth:async()=>{
     try{
       const response = await checkAuth();
-      const res = await axios.get('/auth/check');
+      const res = await axiosInstance.get('/auth/check');
       set({authUser:res.data});
     }
     catch(error){
@@ -22,6 +21,8 @@ const useAuthStore = create((set)=>({ //initial state
     }
    },
 }));
+ 
+export default useAuthStore;
 
 
 
