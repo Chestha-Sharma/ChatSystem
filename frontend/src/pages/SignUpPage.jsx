@@ -31,25 +31,35 @@ const SignUpPage = () => {
       !formData.email.trim() ||
       !formData.password
     ) {
-      return toast.error('All fields are required');
+     toast.error('All fields are required');
+     return false;
     }
-    if (!/\S+@\S+\.\S+/.test(formData.email))
-      return toast.error('Please enter a valid email address');
+    if (!/\S+@\S+\.\S+/.test(formData.email)){
+    toast.error('Please enter a valid email address');
+    return false;
+  }
     if (formData.password !== formData.confirmpassword) {
-      return toast.error('Password and confirm password should be same');
+    toast.error('Password and confirm password should be same');
+      return false;
     }
     if (formData.password.length < 6) {
-      return toast.error('Password should be atleast 6 characters long');
+      toast.error('Password should be atleast 6 characters long');
+      return false;
     }
     return true;
   };
   const navigate = useNavigate();
   const handleSubmit = async(e) => {
     e.preventDefault();
+    try {
     if (validateForm()) {
       await signup(formData);
       navigate('/');
     }
+  }
+  catch(error){
+    toast.error(error.response.data.message);
+  }
   };
 
   return (

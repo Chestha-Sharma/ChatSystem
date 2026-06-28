@@ -10,7 +10,7 @@ import cloudinary from "../lib/cloudinary.js";
 
 
 export const signup = async (req,res)=>{
-    const {fullname , email ,password} = req.body;
+    const {fullname , email ,password ,confirmpassword} = req.body;
     try{
         if(!fullname){
             return res.status(400).json({message : "Fullname is required"});
@@ -21,6 +21,9 @@ export const signup = async (req,res)=>{
         if(!password){
             return res.status(400).json({message : "Password is required"});
         } 
+        if(password !== confirmpassword){
+            return res.status(400).json({message : "Password and confirm password should be same"});
+        }
        if(password.length<6){
         return res.status(400).json({message : "Password should be atleast 6 characters long"});
        }

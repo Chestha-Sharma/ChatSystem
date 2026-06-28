@@ -25,7 +25,7 @@ const Sidebar = () => {
         </div>
 
 
-        <div className="overflow-y-auto w-full py-3">
+        <div className="overflow-y-auto w-full py-3 flex-1">
         {users.map((user) => (
           <button
             key={user._id}

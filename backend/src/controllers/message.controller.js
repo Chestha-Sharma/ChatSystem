@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
+import cloudinary from "../lib/cloudinary.js";
 export const getUsersForSidebar= async(req,res)=>{
     try{
        const loggedInUserId = req.user._id;
@@ -46,14 +47,14 @@ export const sendMessage = async(req,res)=>{
             imageUrl = uploadRespose.secure_url;
          }
 
-         const newMassage = new Massage({
+         const newMessage = new Message({
             senderId:myId,
             receiverId,
             text,
             image:imageUrl
          });
-         await newMassage.save();
-         res.status(200).json(newMassage);
+         await newMessage.save();
+         res.status(200).json(newMessage);
     }
     catch(error){
         console.log("Error in send message controller",error.message);

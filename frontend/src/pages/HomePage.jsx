@@ -1,4 +1,5 @@
-import React from 'react' 
+import React from 'react'
+import Navbar from '../components/Navbar'
 import { useChatStore } from '../store/useChatStore'; 
 import NoChatSelected from '../components/NoChatSelected';
 import ChatContainer from '../components/ChatContainer'; 
