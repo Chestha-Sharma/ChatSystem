@@ -10,7 +10,7 @@ import {
   MessageSquare,
   User,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthImagePattern from '../components/AuthImagePattern.jsx';
 import toast from 'react-hot-toast';
 
@@ -43,11 +43,12 @@ const SignUpPage = () => {
     }
     return true;
   };
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (validateForm()) {
-      signup(formData);
+      await signup(formData);
+      navigate('/');
     }
   };
 

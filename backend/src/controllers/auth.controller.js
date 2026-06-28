@@ -3,6 +3,12 @@ import bcrypt from "bcrypt";
 import { generateToken } from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
 
+// status = delivery boy ko instruction do "yeh urgent hai" (code) 
+// send/json = actual parcel do (data)
+// Dono saath karte hain — pehle instruction, phir parcel! 📦
+
+
+
 export const signup = async (req,res)=>{
     const {fullname , email ,password} = req.body;
     try{
@@ -34,7 +40,7 @@ export const signup = async (req,res)=>{
        }
        generateToken(newUser._id,res);
        await newUser.save();
-       res.send(201).json({
+       res.status(201).json({
         _id:newUser._id,
         fullname:newUser.fullname,
         email:newUser.email,
@@ -60,7 +66,7 @@ export const login = async (req,res)=>{
           return res.status(400).json({message : "Invalid credentials"});
       }
       generateToken(user._id,res);
-      res.send(200).json({
+      res.status(200).json({
           _id:user._id,
           fullname:user.fullname,
           email:user.email,
@@ -76,7 +82,7 @@ export const login = async (req,res)=>{
 export const logout = (req,res)=>{
     try{
       res.cookie("jwt","",{maxAge:0});
-      res.send(200).json({message : "Logged out successfully"});
+      res.status(200).json({message : "Logged out successfully"});
     }
     catch(error){
       console.log("Error in logout controller",error.message);
@@ -87,12 +93,12 @@ export const logout = (req,res)=>{
 export const updateProfile = async (req,res)=>{
    try{
      const {profilepic} = req.body;
-     const user = req.user._id;
+     const userId = req.user._id;
      if(!profilepic){
        return res.status(400).json({message : "Profile pic is required"});
      }
      const uploadRespose = await cloudinary.uploader.upload(profilepic);
-     const updateProfile = await User.findOneAndUpdate(userId,{profilepic:uploadRespose.secure_url},{new:true});
+     const updateProfile = await User.findByIdAndUpdate(userId,{profilepic:uploadRespose.secure_url},{new:true});
      res.status(200).json(updateProfile);
    }
    catch(error){

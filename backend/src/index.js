@@ -11,13 +11,16 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(express.json());
+
 app.use(cookieParser()); //with this we will be able to access cookies in req.cookies like req.cookies.jwt
 app.use(cors({
-    origin:'http://localhost:5173', //backedn saying 5173 is allowed to come from frontend
+    origin:'http://localhost:5173', //backend saying 5173 is allowed to come from frontend
     credentials:true, //it allows cookies
 }
 ));
+
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 
 //cookie vs backend

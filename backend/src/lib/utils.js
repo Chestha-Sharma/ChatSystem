@@ -8,7 +8,7 @@ export const generateToken = (userId , res)=>{
         maxAge:7*24*60*60*1000,//in ms // so after 7 days user have to login again
         httpOnly:true,  //so that not accesible by js
         sameSite:"strict",
-        secure:process.env.NODE_ENV==="production" //localhost http is not secure but in productiion is should be swcure https
+        secure:process.env.NODE_ENV==="production" //localhost http is not secure but in production is should be swcure https
     });
     return token;
 };

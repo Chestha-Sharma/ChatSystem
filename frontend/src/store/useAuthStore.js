@@ -1,6 +1,6 @@
 import {create } from 'zustand' 
 import { axiosInstance } from '../lib/axios'; 
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'; 
 const useAuthStore = create((set)=>({ //initial state
    authUser:null,
    isSigningUp:false,
@@ -9,8 +9,7 @@ const useAuthStore = create((set)=>({ //initial state
    isCheckingAuth:true,
 
    checkAuth:async()=>{
-    try{
-      const response = await checkAuth();
+    try{ 
       const res = await axiosInstance.get('/auth/check');
       set({authUser:res.data});
     }
@@ -38,8 +37,48 @@ const useAuthStore = create((set)=>({ //initial state
      }
    },
 
+   
+   logout :async()=>{
+     try{
+       await axiosInstance.post('/auth/logout');
+       set({authUser:null});
+       toast.success("Logged out Successfully")
+     }
+     catch(error){
+      toast.error(error.response.data.message);
+     }
+   },
 
 
+   login : async(data)=>{
+    set({isLoggingIn:true});
+     try{ 
+       const res =await axiosInstance.post('/auth/login',data);
+       set({authUser:res.data});
+       toast.success('Logged in successfully'); 
+     }
+     catch(error){
+        toast.error(error.response.data.message);
+     } 
+     finally{
+         set({isLoggingIn:false});
+     }
+   },
+    
+    updateProfile : async(data)=>{
+      set({isUpdatingProfile:true});
+       try{ 
+         const res =await axiosInstance.put('/auth/update-profile',data);
+         set({authUser:res.data});
+         toast.success('Profile updated successfully'); 
+       }
+       catch(error){
+          toast.error(error.response.data.message);
+       } 
+       finally{
+           set({isUpdatingProfile:false});
+       }
+    },
 }));
  
 export default useAuthStore;
