@@ -45,9 +45,9 @@ const Navbar = () => {
                 </Link>
 
                 <button className="btn btn-sm gap-2" onClick={logout}>
-  <LogOut className="size-5" />
-  <span className="hidden sm:inline">Logout</span>
-</button>
+                <LogOut className="size-5" />
+                <span className="hidden sm:inline">Logout</span>
+                </button>
               </>
             )}
           </div>
