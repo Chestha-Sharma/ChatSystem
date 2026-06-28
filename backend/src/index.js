@@ -32,11 +32,11 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // // Cookie — automatic!
 // axios.get('/api/check')
-// // bas itna — cookie khud jaayegi browser se ✅
+// // bas itna — cookie khud jaayegi browser se 
 
 
 app.use('/api/auth',authRoutes);
-app.use('/api/massage',massageRoutes);
+app.use('/api/messages',massageRoutes);
 
 app.listen(PORT,()=>{
 console.log(`Server is running on port ${PORT}`);

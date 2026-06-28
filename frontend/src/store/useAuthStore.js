@@ -7,6 +7,7 @@ const useAuthStore = create((set)=>({ //initial state
    isLoggingIn:false,
    isUpdatingProfile:false,
    isCheckingAuth:true,
+   onlineUsers:[],
 
    checkAuth:async()=>{
     try{ 

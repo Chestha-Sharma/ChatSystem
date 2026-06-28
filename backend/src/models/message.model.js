@@ -1,8 +1,8 @@
-import { text } from "express";
+
 import mongoose from "mongoose";
 
 
-const massageSchema = new mongoose.Schema(
+const messageSchema = new mongoose.Schema(
     {
         senderId:{
             type : String,
@@ -10,7 +10,7 @@ const massageSchema = new mongoose.Schema(
             required:true
         },
         receiverId :{
-            tyoe : String,
+            type : String,
             ref:"User",
             required:true
         },
@@ -26,6 +26,6 @@ const massageSchema = new mongoose.Schema(
     }
 );
 
-const Massage = mongoose.model("Massage",massageSchema);
+const Message = mongoose.model("Message",messageSchema);
 
-export default Massage;
+export default Message;
