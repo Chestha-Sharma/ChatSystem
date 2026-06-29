@@ -8,9 +8,9 @@ const BASE_URL = 'https://chatsystem-n8qp.onrender.com';
 
 
 
-const useAuthStore = create((set,get)=>({ //initial state
+const useAuthStore = create((set,get)=>({ 
    authUser:null,
-   isSigningUp:false,
+   isSigningUp:false,//initial state
    isLoggingIn:false,
    isUpdatingProfile:false,
    isCheckingAuth:true,
@@ -93,20 +93,36 @@ const useAuthStore = create((set,get)=>({ //initial state
        }
     },
 
-    connectSocket : async()=>{
+   connectSocket : async()=>{
       const authUser = get().authUser;
-      if(!authUser || get().socket?.connected) return; //if not logged in or aready connected to socket
-           const socket = io(BASE_URL,{
-            query:{
-            userId:authUser._id
-            }
-           });
-           socket.connect();
-           set({socket});
+      if(!authUser) return;
+       
+      if (get().socket?.connected) return;
 
-           socket.on('getOnlineUsers',(onlineUserIds)=>{
-             set({onlineUsers : onlineUserIds});
-           });
+      const socket = io(BASE_URL, {
+        query: {
+          userId: authUser._id
+        },
+        transports: ['websocket'],
+        reconnection: true,
+        reconnectionAttempts: Infinity,
+        reconnectionDelay: 2000
+      });
+
+      socket.connect();
+      set({ socket });  
+
+      socket.on('getOnlineUsers', (onlineUserIds) => {
+        set({ onlineUsers : onlineUserIds });
+      });
+
+      socket.on('disconnect', (reason) => {
+        console.log('socket disconnected', reason);
+        if (reason === "io server disconnect" || reason === "transport close") { 
+           socket.connect();
+           set({ socket }); 
+        }
+      });
     },
 
     disconnectSocket : async()=>{
