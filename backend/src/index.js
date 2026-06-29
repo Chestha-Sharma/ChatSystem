@@ -5,10 +5,12 @@ import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import massageRoutes from "./routes/massage.route.js";
 import cors from "cors"; //backend and frontend are working at different ports so it is used to fix that error bcz generaly it is not allowed according to browser safety policy
+import { app , server , io } from "./lib/socket.js";
+
 
 dotenv.config(); 
+ 
 
-const app = express();
 const PORT = process.env.PORT;
 
 
@@ -38,7 +40,7 @@ app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use('/api/auth',authRoutes);
 app.use('/api/messages',massageRoutes);
 
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
 console.log(`Server is running on port ${PORT}`);
 connectDB();
 });

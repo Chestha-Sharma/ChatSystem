@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import cloudinary from "../lib/cloudinary.js";
+import { io , getReceiverSocketId } from "../lib/socket.js";
 export const getUsersForSidebar= async(req,res)=>{
     try{
        const loggedInUserId = req.user._id;
@@ -54,6 +55,12 @@ export const sendMessage = async(req,res)=>{
             image:imageUrl
          });
          await newMessage.save();
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit('newMessage',newMessage); //io.to() kisi specific socket id ko send krne ke liye use hota h or emit sabko ek saath send krne ke liye
+        }
+
          res.status(200).json(newMessage);
     }
     catch(error){
