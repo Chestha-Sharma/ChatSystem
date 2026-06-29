@@ -10,7 +10,9 @@ const server = http.createServer(app);
 
 const io = new Server(server,{
     cors:{
-        origin:["http://localhost:5173"], 
+        origin:[import.meta.env.NODE_ENV === 'development' ?
+                 'http://localhost:5001/api'
+                 : 'https://chatsystem-n8qp.onrender.com/api'], 
     }
 });
 
