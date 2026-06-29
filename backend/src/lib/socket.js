@@ -10,7 +10,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.NODE_ENV === 'production'
+    origin: process.env.NODE_ENV !== 'development'
       ? 'https://chatsystem-1-zqf0.onrender.com'
       : 'http://localhost:5173',
     credentials: true,

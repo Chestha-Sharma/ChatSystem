@@ -16,7 +16,7 @@ const PORT = process.env.PORT;
 
 app.use(cookieParser()); //with this we will be able to access cookies in req.cookies like req.cookies.jwt
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
+  origin: process.env.NODE_ENV !== 'development' 
     ? 'https://chatsystem-1-zqf0.onrender.com'
     : 'http://localhost:5173',
   credentials: true,
