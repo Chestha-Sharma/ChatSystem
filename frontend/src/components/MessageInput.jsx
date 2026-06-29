@@ -113,7 +113,7 @@ const MessageInput = () => {
         <button
           type="submit"
           className="btn btn-sm btn-circle"
-          disabled={!text.trim() && !imagePreview}
+          disabled={(!text.trim() && !imagePreview)||isSending}
         >
           {isSending ? (
             <Loader className="animate-spin" />
