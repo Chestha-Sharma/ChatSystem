@@ -14,7 +14,9 @@ const io = new Server(server, {
       ? 'https://chatsystem-1-zqf0.onrender.com'
       : 'http://localhost:5173',
     credentials: true,
-  }
+  },
+  pingTimeout:30000,
+  pingInterval:25000
 });
 
 const userSocketMap = {};
@@ -33,7 +35,9 @@ if(userId){
 io.emit('getOnlineUsers',Object.keys(userSocketMap));
 
 socket.on('disconnect',()=>{
-    delete userSocketMap[userId];
+    if (userId && userSocketMap[userId] === socket.id) {
+          delete userSocketMap[userId];
+      }
     io.emit('getOnlineUsers',Object.keys(userSocketMap));
     console.log("Socket disconnected",socket.id);
 });
