@@ -73,7 +73,7 @@ const useAuthStore = create((set,get)=>({ //initial state
        get().connectSocket();
      }
      catch(error){
-        toast.error(error.response.data.message);
+        toast.error(error.response?.data?.message || "Something went wrong");
      } 
      finally{
          set({isLoggingIn:false});
