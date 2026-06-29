@@ -8,14 +8,14 @@ const app = express();
 const server = http.createServer(app);
 
 
-const io = new Server(server,{
-    cors:{
-        origin:[import.meta.env.NODE_ENV === 'development' ?
-                 'http://localhost:5001/api'
-                 : 'https://chatsystem-n8qp.onrender.com/api'], 
-    }
+const io = new Server(server, {
+  cors: {
+    origin: process.env.NODE_ENV === 'production'
+      ? 'https://chatsystem-1-zqf0.onrender.com'
+      : 'http://localhost:5173',
+    credentials: true,
+  }
 });
-
 
 const userSocketMap = {};
 export function getReceiverSocketId(userId){
