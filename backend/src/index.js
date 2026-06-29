@@ -14,6 +14,29 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 
+
+
+//hamne abhi frontennd and backend ko alag alag deploy kiya h so frontend and backend are at different domains so it is not possible to send cookies in incognito its browser privacy policy if we wants to use in incog then we have to took both of them at same domain and same side deployement 
+//using
+// import path from 'path';
+// import { fileURLToPath } from 'url';
+
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = path.dirname(__filename);
+
+// if(process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+  
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
+//   });
+// }
+
+
+
+
+
+
 app.use(cookieParser()); //with this we will be able to access cookies in req.cookies like req.cookies.jwt
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
