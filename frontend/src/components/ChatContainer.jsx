@@ -7,7 +7,7 @@ import useAuthStore from '../store/useAuthStore.js';
 
 const ChatContainer = () => {
     const { messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeFromMessages } = useChatStore();
-     
+     const [zoomedId, setZoomedId] = useState(null);
     const { authUser, socket } = useAuthStore(); 
     const messageEndRef = useRef(null);
     
@@ -90,8 +90,17 @@ const ChatContainer = () => {
                                             : "bg-base-200 text-base-content rounded-2xl rounded-bl-sm"}`}
                                     >
                                         {message.image && (
-                                            <img src={message.image} alt="attachment" className='sm:max-w-[200px] rounded-xl mb-2' />
-                                        )}
+                                               <img
+                                                   src={message.image}
+                                                   alt="attachment"
+                                                   onClick={() => setZoomedId(zoomedId === message._id ? null : message._id)}
+                                                   className={`sm:max-w-[200px] rounded-xl mb-2 transition-transform duration-300
+                                                       ${isSent ? 'origin-right' : 'origin-left'}
+                                                       ${zoomedId === message._id
+                                                           ? 'relative z-50 scale-[1.8] shadow-2xl cursor-zoom-out'
+                                                           : 'cursor-zoom-in'}`}
+                                               />
+                                           )}
                                         {message.text && <p>{message.text}</p>}
                                     </div>
 
