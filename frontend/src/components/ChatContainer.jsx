@@ -92,13 +92,10 @@ const ChatContainer = () => {
                                         {message.image && (
                                                <img
                                                    src={message.image}
-                                                   alt="attachment"
-                                                   onClick={() => setZoomedId(zoomedId === message._id ? null : message._id)}
-                                                   className={`w-full rounded-xl mb-2 transition-transform duration-300
-                                                       ${isSent ? 'origin-right' : 'origin-left'}
-                                                       ${zoomedId === message._id
-                                                           ? 'relative z-50 scale-[1.8] shadow-2xl cursor-zoom-out'
-                                                           : 'cursor-zoom-in'}`}
+                                                   alt="attachment" 
+                                                   className={`sm:max-w-[200px] rounded-xl mb-2 transition-transform duration-300
+                                                       ${isSent ? 'origin-right' : 'origin-left'}`
+                                                   } 
                                                />
                                            )}
                                         {message.text && <p>{message.text}</p>}
