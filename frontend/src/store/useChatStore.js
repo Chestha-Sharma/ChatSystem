@@ -11,7 +11,7 @@ export const useChatStore = create((set,get) => ({
    selectedUser:null,
    isUserLoading:false,
    isMessagesLoading:false, 
-   setSelectedUser:(user)=>set({selectedUser:user}), //current user ne chat ke liye jise select kiya h
+   setSelectedUser:(user)=>set({selectedUser:user}),  
 
     
     getUsers : async()=>{

@@ -8,8 +8,8 @@ router.post('/signup',signup);
 router.post('/login',login); 
 router.post('/logout',logout);
 
-router.put('/update-profile',protectRoute, updateProfile);  //protectRoute middleware checks is use signed in
+router.put('/update-profile',protectRoute, updateProfile);  
 
-router.get('/check',protectRoute,checkAuth); //whenever refresh the application
+router.get('/check',protectRoute,checkAuth); 
 
 export default router;

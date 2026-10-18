@@ -30,8 +30,7 @@ console.log("Socket connected",socket.id);
 const userId = socket.handshake.query.userId;
 if(userId){
     userSocketMap[userId] = socket.id;
-}
-//io.emit() used to send events to all the conneced cients
+} 
 io.emit('getOnlineUsers',Object.keys(userSocketMap));
 
 socket.on('disconnect',()=>{

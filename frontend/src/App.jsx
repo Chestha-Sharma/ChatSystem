@@ -32,6 +32,7 @@ const App = () => {
 
        <Navbar /> 
         
+        <Toaster />
         <Routes>
           <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
           <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
@@ -42,7 +43,6 @@ const App = () => {
         </Routes>
 
 
-        <Toaster />
        </div> 
   )
 }

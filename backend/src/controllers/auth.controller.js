@@ -2,12 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
-
-// status = delivery boy ko instruction do "yeh urgent hai" (code) 
-// send/json = actual parcel do (data)
-// Dono saath karte hain — pehle instruction, phir parcel! 📦
-
-
+ 
 
 export const signup = async (req,res)=>{
     const {fullname , email ,password ,confirmpassword} = req.body;

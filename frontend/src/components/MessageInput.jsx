@@ -6,23 +6,10 @@ import toast from 'react-hot-toast';
 const MessageInput = () => {
   const [text, setText] = useState('');
   const [imagePreview, setImagePreview] = useState(null);
-  const fileInputRef = useRef(null); //ye yaha isliye use hua taki choose image jo dikhta ha use chhipaya ja sake vo dikhne me bura lagta
+  const fileInputRef = useRef(null); 
   const { sendMessage } = useChatStore();
   const [isSending, setIsSending] = useState(false);
-
-  //   useState vs useRef — Simple Explanation
-  // useState — Re-render Karta Hai
-  // jsxconst [count, setCount] = useState(0);
-
-  // // Jab value change hoti hai → component dobara render hota hai
-  // // Screen update hoti hai
-  // setCount(5); // → re-render → UI update
-  // useRef — Re-render Nahi Karta
-  // jsxconst countRef = useRef(0);
-
-  // // Jab value change hoti hai → component render NAHI hota
-  // // Sirf value memory mein store hoti hai
-  // countRef.current = 5; // → NO re-render → UI same rehta hai
+ 
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];

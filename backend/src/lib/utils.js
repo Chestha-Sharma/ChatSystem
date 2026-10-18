@@ -5,10 +5,10 @@ export const generateToken = (userId , res)=>{
         expiresIn:"7d"
     });
     res.cookie("jwt",token,{
-        maxAge:7*24*60*60*1000,//in ms // so after 7 days user have to login again
-        httpOnly:true,  //so that not accesible by js
+        maxAge:7*24*60*60*1000,
+        httpOnly:true, 
         sameSite: "none",
-        secure:true //localhost http is not secure but in production is should be swcure https
+        secure:true  
     });
     return token;
 };
