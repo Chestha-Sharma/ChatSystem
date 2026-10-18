@@ -1,6 +1,6 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcrypt";
-import { generateToken } from "../lib/utils.js";
+import { generateToken , cookieOptions} from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
  
 
@@ -79,7 +79,7 @@ export const login = async (req,res)=>{
 
 export const logout = (req,res)=>{
     try{
-      res.cookie("jwt","",{maxAge:0});
+      res.clearCookie("jwt", cookieOptions);
       res.status(200).json({message : "Logged out successfully"});
     }
     catch(error){
