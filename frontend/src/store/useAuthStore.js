@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { io } from 'socket.io-client'
 
 
-const BASE_URL = 'https://chatsystem-n8qp.onrender.com';
+const BASE_URL = 'https://chatsystem-1-zqf0.onrender.com/';
 
 
 
@@ -134,9 +134,7 @@ const useAuthStore = create((set,get)=>({
  
 export default useAuthStore;
 
-
-
-
+ 
 
 // Zustand aur Context same kaam karte hain — global state store karna. Bas syntax alag hai!
 
