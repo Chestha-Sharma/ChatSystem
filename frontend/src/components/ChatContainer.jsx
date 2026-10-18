@@ -93,7 +93,7 @@ const ChatContainer = () => {
                                                <img
                                                    src={message.image}
                                                    alt="attachment" 
-                                                   className={`sm:max-w-[200px] rounded-xl mb-2 transition-transform duration-300
+                                                   className={`w-full rounded-xl mb-2 transition-transform duration-300
                                                        ${isSent ? 'origin-right' : 'origin-left'}`
                                                    } 
                                                />
