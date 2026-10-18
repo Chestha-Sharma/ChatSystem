@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const cookieOptions = {
+export const cookieOptions = {
         httpOnly:true, 
         sameSite: "none",
         secure:true  
