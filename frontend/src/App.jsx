@@ -32,7 +32,6 @@ const App = () => {
 
        <Navbar /> 
         
-        <Toaster />
         <Routes>
           <Route path="/" element={authUser ? <HomePage /> : <Navigate to="/login" />} />
           <Route path="/signup" element={!authUser ? <SignUpPage /> : <Navigate to="/" />} />
@@ -41,7 +40,8 @@ const App = () => {
           <Route path="/profile" element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
 
         </Routes>
-
+  
+        <Toaster />
 
        </div> 
   )
