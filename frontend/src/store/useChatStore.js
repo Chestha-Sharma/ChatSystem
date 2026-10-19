@@ -70,6 +70,7 @@ export const useChatStore = create((set,get) => ({
         const {selectedUser} = get();
          if(!selectedUser) return; 
          const socket = useAuthStore.getState().socket;
+         if(!socket) return;
          socket.off('newMessage'); 
     }
 
